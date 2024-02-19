@@ -7,23 +7,26 @@ from ev3dev2.led import Leds
 from ev3dev2.sound import Sound
 from ev3dev2.sensor.lego import GyroSensor
 
+#Motors/sensors
 Right_Moter = OUTPUT_B
 Left_Motor = OUTPUT_A
 gyro = GyroSensor(INPUT_2)
 
-
+#Inputs
 distance = float(input('Input diastance: '))
 num_of_laps = int(input('Input the number of laps: '))
 
 
-
+#calculations/constants
 velocity = 15
 time = distance/velocity
 
+#Intializing the robot
 robotDrive = tank_drive = MoveTank(Right_Moter,Left_Motor)
 robotDrive.gyro = GyroSensor()
 robotDrive.gyro.calibrate()
 
+#Loops for the number of laps 
 for i in range(num_of_laps):
     if(i % 2 == 0):
         robotDrive.follow_gyro_angle(kp = 11.3, ki = 0.05, kd = 3.2, speed = SpeedPercent(30), target_angle = 0, follow_for = follow_for_ms, ms = time/0.001)
