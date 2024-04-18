@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, SpeedPercent, MoveTank,follow_for_ms
+from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C, SpeedPercent, MoveTank,follow_for_ms,MediumMotor
 from ev3dev2.sensor import INPUT_1,INPUT_2,INPUT_3,INPUT_4
 from ev3dev2.sensor.lego import TouchSensor
 from ev3dev2.led import Leds
@@ -12,16 +12,22 @@ Right_Moter = OUTPUT_B
 Left_Motor = OUTPUT_A
 gyro = GyroSensor(INPUT_2)
 
+Motor_C = OUTPUT_C
+
+
+
 #Inputs
 distance = float(input('Input diastance: '))
 num_of_laps = int(input('Input the number of laps: '))
 
 
 #calculations/constants
-velocity = 15
+velocity = 5.91
 time = distance/velocity
 
 #Intializing the robot
+
+#robotDrive.on_for_seconds(SpeedPercent(75), 1)
 robotDrive = tank_drive = MoveTank(Right_Moter,Left_Motor)
 robotDrive.gyro = GyroSensor()
 robotDrive.gyro.calibrate()
